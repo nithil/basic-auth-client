@@ -1,13 +1,27 @@
 import './index.css';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { authRoutes, routes } from './routes';
 
+import ConnectivityListener from './connectivityListener';
+import Alert from './containers/alert';
+
 class App extends Component {
   render() {
-    return <div className='appContent'>{routes()}</div>;
+    return (
+      <>
+        <ConnectivityListener />
+        <Alert />
+        <div className='app-content'>{this.props.userSession ? routes() : authRoutes()}</div>
+      </>
+    );
   }
 }
 
-export default App;
+const mapStateToProps = ({ userSession }) => ({
+  userSession,
+});
+
+export default connect(mapStateToProps)(App);

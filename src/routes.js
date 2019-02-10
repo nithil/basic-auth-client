@@ -9,10 +9,15 @@ const PageNotFound = Loadable({
   loading: LoadingComponent,
 });
 
+const Login = Loadable({
+  loader: () => import(/* webpackChunkName: 'Login' */ './containers/authentication/login'),
+  loading: LoadingComponent,
+});
+
 export const routes = () => {
   return (
     <Switch>
-      <Route path='/' exact component={PageNotFound} />
+      {/* <Route path='/' exact component={PageNotFound} /> */}
       <Route component={PageNotFound} />
     </Switch>
   );
@@ -21,7 +26,8 @@ export const routes = () => {
 export const authRoutes = () => {
   return (
     <Switch>
-      <Route path='/' exact component={PageNotFound} />
+      <Route path='/' exact component={Login} />
+      <Route path='/login' component={Login} />
       <Route component={PageNotFound} />
     </Switch>
   );
