@@ -3,19 +3,26 @@ import { setAlert } from '../containers/alert/reducer';
 import { setUserSession } from '../containers/authentication/reducer';
 import store from '../store/index';
 
-const API = axios.create({
-  baseURL: `http://localhost:5000/`,
-});
+// const API = axios.create({
+//   baseURL: ,
+// });
+
+const BASE_URL = `http://localhost:3000`;
 
 const headers = new Headers({
   'Content-Type': 'application/json',
   // 'Content-Encoding': 'gzip',
 });
 
-const apiRequest = async (method, url, data) => {
+const apiRequest = async (method, url, data = null) => {
   try {
-    // await API.post('auth/login', { ...user });
-    const response = await API[method](url, data, { headers: { ...headers, ...authHeader } });
+    let requestObject = {
+      method,
+      url: `${BASE_URL}/${url}`,
+      headers: { ...headers, ...authHeader() },
+    };
+    if (data) requestObject = { ...requestObject, data };
+    const response = await axios(requestObject);
     return response;
   } catch (error) {
     let userErrorMessage;
