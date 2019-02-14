@@ -53,6 +53,8 @@ class Login extends Component {
         })
       );
       this.setState({ isDisabled: false, isLoading: false });
+      localStorage.setItem('x-access-token', apiResponse.headers['x-access-token'].split(' ')[1]);
+      localStorage.setItem('x-user-session', JSON.stringify(loginResponse.data));
       this.props.dispatch(setUserSession(loginResponse.data));
       this.props.history.push('/');
     } catch (error) {

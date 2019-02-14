@@ -4,8 +4,8 @@ const LoadingComponent = ({ isLoading, error }) => {
   try {
     if (isLoading) {
       return (
-        <div className='App-header'>
-          <div className='spinner-grow' style={{ width: '3rem', height: '3rem' }} role='status'>
+        <div className='app-loading'>
+          <div className='spinner-grow' style={{ width: '5rem', height: '5rem' }} role='status'>
             <span className='sr-only'>Loading...</span>
           </div>
         </div>

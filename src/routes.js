@@ -14,10 +14,16 @@ const Login = Loadable({
   loading: LoadingComponent,
 });
 
+const RolesList = Loadable({
+  loader: () => import(/* webpackChunkName: 'RolesList' */ './containers/role/rolesList'),
+  loading: LoadingComponent,
+});
+
 export const routes = () => {
   return (
     <Switch>
-      {/* <Route path='/' exact component={PageNotFound} /> */}
+      <Route path='/' exact component={RolesList} />
+      <Route path='/roles' component={RolesList} />
       <Route component={PageNotFound} />
     </Switch>
   );

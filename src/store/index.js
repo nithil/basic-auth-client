@@ -7,10 +7,10 @@ import rootReducer from '../reducers';
 
 let middleWares = [thunkMiddleware];
 
-if (process.env.NODE_ENV !== 'production') {
-  const createLogger = require('redux-logger').createLogger;
-  middleWares = [...middleWares, createLogger()];
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   const createLogger = require('redux-logger').createLogger;
+//   middleWares = [...middleWares, createLogger()];
+// }
 
 const middlewareEnhancer = applyMiddleware(...middleWares);
 const enhancers = [middlewareEnhancer, monitorReducersEnhancer];

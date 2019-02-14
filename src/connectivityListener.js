@@ -37,7 +37,6 @@ class ConnectivityListener extends Component {
 
     const { toastManager } = props;
     const { isOnline } = snapshot;
-    debugger;
 
     const content = (
       <div>

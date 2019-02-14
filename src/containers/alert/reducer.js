@@ -9,11 +9,8 @@ export const setAlert = alert => {
   };
 };
 
-export const alert = createReducer(
-  {},
-  {
-    [SET_ALERT](state, { payload }) {
-      return { ...payload };
-    },
-  }
-);
+export const alert = createReducer(null, {
+  [SET_ALERT](state, { payload }) {
+    return payload;
+  },
+});

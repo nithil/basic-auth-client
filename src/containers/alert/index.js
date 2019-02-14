@@ -1,12 +1,11 @@
 import { PureComponent } from 'react';
 import { withToastManager } from 'react-toast-notifications';
-
 import { connect } from 'react-redux';
 
 class Alert extends PureComponent {
   componentDidUpdate(prevProps) {
-    if (prevProps.message !== this.props.message) {
-      this.displayAlert();
+    if (prevProps.alert !== this.props.alert) {
+      this.displayAlert(this.props.alert);
     }
   }
 
@@ -14,11 +13,10 @@ class Alert extends PureComponent {
    * Trigger message display
    * @param {*} alert Object containing type & message, type can be [success, error, warning, info]
    */
-  displayAlert = () => {
-    const alertType = (this.props.type || '').toLowerCase() || 'info';
-    const content = this.props.message;
+  displayAlert = alert => {
+    const alertType = (alert.type || '').toLowerCase() || 'info';
+    const content = alert.message;
     if (!content) return;
-
     this.props.toastManager.add(content, {
       appearance: alertType,
       autoDismiss: true,
@@ -30,6 +28,6 @@ class Alert extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ alert }) => ({ message: alert.message, type: alert.type });
+const mapStateToProps = ({ alert }) => ({ alert });
 
 export default withToastManager(connect(mapStateToProps)(Alert));

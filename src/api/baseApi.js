@@ -1,18 +1,21 @@
 import axios from 'axios';
-
-import { setUserSession } from '../containers/authentication/reducer';
-
-import store from '../store/index';
 import { setAlert } from '../containers/alert/reducer';
+import { setUserSession } from '../containers/authentication/reducer';
+import store from '../store/index';
 
 const API = axios.create({
   baseURL: `http://localhost:5000/`,
 });
 
+const headers = new Headers({
+  'Content-Type': 'application/json',
+  // 'Content-Encoding': 'gzip',
+});
+
 const apiRequest = async (method, url, data) => {
   try {
     // await API.post('auth/login', { ...user });
-    const response = await API[method](url, data);
+    const response = await API[method](url, data, { headers: { ...headers, ...authHeader } });
     return response;
   } catch (error) {
     let userErrorMessage;
@@ -49,6 +52,14 @@ const displayErrorAlert = message => {
       message,
     })
   );
+};
+
+const authHeader = () => {
+  const authToken = localStorage.getItem('x-access-token');
+  if (authToken) {
+    return { Authorization: `bearer ${authToken}` };
+  }
+  return {};
 };
 
 export default apiRequest;
