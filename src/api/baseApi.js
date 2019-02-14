@@ -43,7 +43,8 @@ const apiRequest = async (method, url, data = null) => {
 };
 
 const handleApiResponse = (response = {}) => {
-  if (response.status === 404) {
+  if (response.status === 401) {
+    localStorage.clear();
     store.dispatch(setUserSession(null));
   }
   // TODO: Add default error message, if not available in api response

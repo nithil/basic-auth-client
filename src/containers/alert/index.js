@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Alert extends PureComponent {
   componentDidUpdate(prevProps) {
-    if (prevProps.alert !== this.props.alert) {
+    if (this.props.alert && prevProps.alert !== this.props.alert) {
       this.displayAlert(this.props.alert);
     }
   }
