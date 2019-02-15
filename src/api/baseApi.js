@@ -2,12 +2,11 @@ import axios from 'axios';
 import { setAlert } from '../containers/alert/reducer';
 import { setUserSession } from '../containers/authentication/reducer';
 import store from '../store/index';
+import { apiBaseUrl } from '../config/env';
 
 // const API = axios.create({
 //   baseURL: ,
 // });
-
-const BASE_URL = `http://localhost:3000`;
 
 const headers = new Headers({
   'Content-Type': 'application/json',
@@ -18,7 +17,7 @@ const apiRequest = async (method, url, data = null) => {
   try {
     let requestObject = {
       method,
-      url: `${BASE_URL}/${url}`,
+      url: `${apiBaseUrl}/${url}`,
       headers: { ...headers, ...authHeader() },
     };
     if (data) requestObject = { ...requestObject, data };

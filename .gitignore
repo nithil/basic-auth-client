@@ -1,6 +1,10 @@
 .git
 /node_modules
 
+# secret files
+.env
+src/config/env.js
+
 # production
 /build
 /live
@@ -10,4 +14,3 @@
 
 # misc
 .DS_Store
-.env
