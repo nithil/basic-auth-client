@@ -10,7 +10,7 @@ fi
 
 ssh "deploy@$IP" -tt << EOF
   sudo -S apt-get update < ~/iambatman.txt;
-  cd $HOME/apps/basic-auth-client;
+  cd /home/deploy/apps/basic-auth-client;
   git checkout .;
   git fetch && git checkout master;
   git pull origin master;
