@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build/**/**/*.map ./source-maps/",
+    "build": "react-scripts build && mkdir -p source-maps && mv build/**/**/*.map ./source-maps/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
