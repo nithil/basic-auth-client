@@ -10,7 +10,8 @@ app.use(morgan('short'));
 app.use(express.static(path.resolve(__dirname, '..', 'live')));
 
 app.get('*', (req, res, next) => {
-  if (req.url.endsWith('.js')) {
+  // (Unexpected token < error; After doing new deployments) When build doesn't include the chunk file it's looking for will end up here, handle the case by returning an error here, & catching in loading component to show reload button to refresh the browser to load new js files
+  if (req.url.endsWith('.js') || req.url.endsWith('.css')) {
     return res.send(`(console.error('${req.url}'))`);
   }
   next();
