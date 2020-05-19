@@ -19,9 +19,7 @@ USER node
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install
-# If you are building your code for production
-# RUN npm install --only=production
+RUN npm install --silent
 
 # Bundle app source
 COPY . .

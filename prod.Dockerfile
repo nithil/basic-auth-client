@@ -11,7 +11,7 @@ WORKDIR /opt/basic-auth-client
 USER node
 COPY package*.json ./
 
-RUN npm install --silent
+RUN npm install --silent --only=production
 COPY . .
 RUN npm run build
 
