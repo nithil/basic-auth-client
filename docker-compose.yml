@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  basic-auth-client:
+    container_name: basic-auth-client
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - '.:/basic-auth-client'
+      - '/basic-auth-client/node_modules'
+    ports:
+      - '3001:3000'
+    environment:
+      - NODE_ENV=development

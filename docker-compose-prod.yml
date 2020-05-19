@@ -1,0 +1,11 @@
+# TODO: use docker stack instead of this
+version: '3.7'
+
+services:
+  basic-auth-client:
+    container_name: basic-auth-client
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - '80:80'
